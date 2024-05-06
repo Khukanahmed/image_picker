@@ -28,11 +28,16 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           child: Center(
             child: Obx(() {
-              return CircleAvatar(
+              return ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: CircleAvatar(
                   radius: 60,
-                  backgroundImage: con.imagePath.isNotEmpty
-                      ? FileImage(File(con.imagePath.toString()))
-                      : null);
+                  child: con.imagePath.isNotEmpty
+                      ? Image.file(File(con.imagePath.toString()))
+                      : Image.network(
+                          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"),
+                ),
+              );
             }),
           ),
         )
